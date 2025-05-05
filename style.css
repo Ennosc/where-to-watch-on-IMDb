@@ -1,0 +1,57 @@
+body {
+    width: 240px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgb(255, 195, 7);
+    color: black;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0px 10px;
+}
+
+input {
+    width: 100%;
+}
+.title {
+    margin-top: 0;
+    margin-bottom: 5px; /* Adjust as needed */
+}
+
+.buttonContainer{
+    display: grid;
+    place-items: center;
+}
+button {
+    margin-top: 12px;
+    margin-bottom: 10px;
+    background: #00008B;
+    padding: 14px 12px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.4s all;
+    
+}
+
+button:hover {
+    background: rgb(31, 30, 30);
+    border-radius: 25px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.servicesContainer {
+    display: grid;
+    grid-template-columns: repeat(3, auto); /* Creates 3 columns of equal width */
+    gap: 7px; /* Adds some spacing between the grid items */
+    padding: 0px 0px;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: #34495e;
+}

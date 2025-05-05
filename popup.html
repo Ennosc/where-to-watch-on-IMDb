@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMDb</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">IMDb streaming services</h1>
+    </div>
+    <!-- 
+    <div class="container">
+
+        <div class="field">
+            <label class="label">Country</label>
+            <div class="select">
+                <select id="locationId">
+                <option value="usa">USA</option>
+                <option value="de">DE</option>
+            </select>
+            </div>
+        </div>
+    </div>
+--> 
+    <div class="servicesContainer">
+        <label>
+            <input type="checkbox" id="netflix" class="service-checkbox" />
+            Netflix
+        </label>
+        <label>
+            <input type="checkbox" id="prime" class="service-checkbox" />
+            Prime Video
+        </label>
+        <label>
+            <input type="checkbox" id="disney" class="service-checkbox" />
+            Disney+
+        </label>
+        <label>
+            <input type="checkbox" id="apple" class="service-checkbox" />
+            AppleTV
+        </label>
+        <label>
+            <input type="checkbox" id="paramount" class="service-checkbox" />
+            Paramount+
+        </label>
+        <label>
+            <input type="checkbox" id="hbo" class="service-checkbox" />
+            max
+        </label>
+        <label>
+            <input type="checkbox" id="hulu" class="service-checkbox" />
+            hulu
+        </label>
+        <label>
+            <input type="checkbox" id="all" class="service-checkbox" />
+            All Services
+        </label>
+    </div>
+
+    <div class="buttonContainer">
+        <button id="button">Load movies/series</button>
+        <span id="error"></span>
+    </div>
+
+</body>
+
+<script src="popup.js"></script>
+
+</html>
+
+
