@@ -131,6 +131,12 @@ const validURL = (url) => {
 }
 
 function isValidPage(activeTab){
+    if(activeTab.url.includes("/title/tt")){
+        button.disabled = true;
+        console.log("title/tt");
+        errorElement.textContent = "Loading";
+        return false;
+    }
     if(validURL(activeTab.url)){
         button.disabled = false;
         console.log("valid page")
@@ -154,108 +160,3 @@ const saveServiceSelection = () => {
     console.log("Saved service selection:", serviceArr);
     if(serviceArr.length) errorElement.textContent = "";
 }
-
-
-/*
-document.addEventListener("DOMContentLoaded", async () => {
-    const activeTab = await getCurrentTab();
-    console.log("HHHHHHHHHHHHHHLLLLLLLLLLLLLLLLLL")
-    console.log(activeTab);
-    console.log(activeTab.url)
-
-    chrome.storage.local.get(["loadedTitleCount", "lastPageUrl"], (result) => {
-        console.log("storageee  dsaSDLKFAJLDFJAÖSDFJÖALSJDFÖ")
-        const {loadedTitleCount, lastPageUrl} = result;
-        // console.log(activeTab.url)
-        // console.log( lastPageUrl);
-        // console.log( lastPageUrl.length);
-        if(lastPageUrl === activeTab.url){
-            if(loadedTitleCount > 0){
-                console.log(loadedTitleCount + "get more")
-                button.textContent = "Get More";
-            } else{
-                console.log(loadedTitleCount + "load")
-                button.textContent = "Load movies/series"
-            }
-        }else{
-            chrome.storage.local.set({
-                loadedTitleCount: 0,
-                lastPageUrl: activeTab.url
-            });
-            button.textContent = "Load movies/series";
-        }
-    })
-    
-    if(validURL(activeTab.url)){
-            console.log("valido pagina")
-        }else{
-            document.getElementById("error").innerHTML = "Not a valid page"
-        }
-
-    // if(activeTab.url.includes("imdb.com/chart/top") || 
-    //     activeTab.url.includes("imdb.com/list/ls")  || //https://www.imdb.com/user/ur80562493/ratings/?ref_=wh_sm
-    //     ( activeTab.url.includes("imdb.com/user/") && (activeTab.url.includes("watchhistory") || ) ) ){
-    //     //chrome.storage.sync.get()... 39:30
-    //     console.log("peeeeeeeeeeeng")
-    // }else{
-    //     document.getElementById("error").innerHTML = "Not a valid page"
-    // }
-})
-*/
-
-
-
-
-/*
-document.addEventListener("DOMContentLoaded", async () => {
-    const activeTab = await getCurrentTab();
-    console.log(activeTab);
-
-    if (validURL(activeTab.url)) {
-        console.log("Valid page");
-
-        chrome.storage.local.get(["loadedTitleCount", "lastPageUrl"], (result) => {
-        const {loadedTitleCount, lastPageUrl} = result;
-
-        if (lastPageUrl === activeTab.url) {
-            if (loadedTitleCount > 0) {
-            button.textContent = "Get More";
-            } else {
-            button.textContent = "Load movies/series";
-            }
-        } else {
-            chrome.storage.local.set({
-            loadedTitleCount: 0,
-            lastPageUrl: activeTab.url
-            });
-            button.textContent = "Load movies/series";
-        }
-        });
-
-        errorElement.textContent = "";
-
-    } else {
-        console.log("Not a valid page");
-        button.disabled = true;
-        button.textContent = "Load movies/series"; // <<< WICHTIG: Reset des Buttons
-        chrome.storage.local.set({
-        loadedTitleCount: 0,
-        lastPageUrl: activeTab.url
-        });
-
-        errorElement.textContent = "Not a valid page";
-    }
-    chrome.storage.local.get(["serviceSelection"], (result) => {
-        const {serviceSelection} = result;
-        console.log(serviceSelection)
-        serviceSelection.forEach(service => {
-            console.log(service)
-            serviceCheckboxes.forEach(cb => {
-                console.log(cb)
-                if(service == cb.id) cb.checked = true;
-            })
-        })
-    });
-
-});
-*/

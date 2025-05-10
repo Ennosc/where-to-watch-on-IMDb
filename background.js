@@ -18,7 +18,7 @@ function isIMDbTitlePageLoadComplete(changeInfo, tab) {
     return (
         changeInfo.status === "complete" &&
         tab.url &&
-        tab.url.includes("imdb.com/title/tt")
+        (tab.url.includes("imdb.com/") && tab.url.includes("/title/tt") ) 
     );
 }
 
@@ -134,69 +134,6 @@ const fetchStreamingData = async (serviceSelection, titlesIds, tabId, eventName)
 
 
 
-/*
-//api calls
-const apiCall = (serviceSelection, arr) => {
-    console.log(serviceSelection)
-    fetchStreamingDataForTitles(serviceSelection, arr);
-    
-}
-
-const fetchStreamingDataForTitleTtPage = async (serviceSelection, titlesIds, tabId) => {
-    console.log("fetstreamingdatafortitles");
-
-    const ipPromise = fetch("http://ip-api.com/json/?fields=61439")
-        .then(res => res.json())
-        .then(data => data.countryCode.toLowerCase());
-
-    const userCountry = await ipPromise;
-
-    for (let titleId of titlesIds) {
-        fetchStreamingDataProvider(serviceSelection, titleId)
-            .then(titleData => {
-                chrome.tabs.sendMessage(tabId, {
-                    event: "titleTT", 
-                    data: {
-                        userCountry,
-                        titles: titleData
-                    }
-                });
-            })
-            .catch(err => {
-                console.error("Fehler bei Titel:", titleId, err);
-            });
-    }
-};
-
-
-const fetchStreamingDataForTitles = async (serviceSelection, titlesIds) => {
-    console.log("fetstreamingdatafortitles");
-
-    const ipPromise = fetch("http://ip-api.com/json/?fields=61439")
-        .then(res => res.json())
-        .then(data => data.countryCode.toLowerCase());
-
-    const userCountry = await ipPromise;
-
-    // Alle Titel einzeln laden und sofort senden
-    for (let titleId of titlesIds) {
-        fetchStreamingDataProvider(serviceSelection, titleId)
-            .then(titleData => {
-                chrome.tabs.sendMessage(tabID, {
-                    event: "streamingResults", // neuer Eventname
-                    data: {
-                        userCountry,
-                        titles: titleData
-                    }
-                });
-            })
-            .catch(err => {
-                console.error("Fehler bei Titel:", titleId, err);
-            });
-    }
-};
-*/
-
 const fetchStreamingDataProvider = async (serviceSelection, titleId) => {
     const url = `https://streaming-availability.p.rapidapi.com/shows/${titleId}`
     // const url = `https://streaming-availability.p.rapidapi.com/shows/${"tt4093826"}`
@@ -276,107 +213,6 @@ const extractStreamingOptions = (streamingOptions, serviceSelection) => {
 
     return result.sort((a, b) => a.country.localeCompare(b.country));
 };
-
-/*
-const addStreamingOptions = (data) => {
-    for(let [country, streamingData] of Object.entries(data.streamingOptions)){
-        // console.log(data.streamingOptions);
-        // console.log(country);
-        // console.log(streamingData);//nochmal verstehen
-        if(streamingData && streamingData.length > 0){
-            let strOptObj = {
-                country: country,
-                services: []
-            };
-
-            streamingData.forEach(service => {
-                const id = service.service.id;
-                const isSubscription = service.type === "subscription";
-                const isFree = service.type === "free";
-               //console.log(serviceSelection);
-                const inSelection = serviceSelection.includes(id);
-                const includeAll = serviceSelection.includes("all");
-                //console.log(inSelection);
-                // Zum Debuggen: wenn ID nicht ausgewählt wurde
-                if (!inSelection && !includeAll) {
-                   // console.log(id);
-                }
-            
-                const shouldInclude = includeAll
-                    ? (isSubscription || isFree)
-                    : (isFree || (isSubscription && inSelection));
-            
-                if (shouldInclude) {
-                    //console.log(service.service.name);
-                    //console.log(service.link);
-                    //console.log(service.type);
-            
-                    strOptObj.services.push({
-                        name: service.service.name,
-                        link: service.link,
-                        type: service.type
-                    });
-                }
-            });
-            
-            //console.log(strOptObj);
-            if (strOptObj.services.length > 0) {
-                obj.streamingOptions.push(strOptObj);
-            }
-        }
-    }
-    obj.streamingOptions.sort((a, b) => a.country.localeCompare(b.country));
-};
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-batman tt0468569
-shwashank tt0111161
-lotr tt0167260
-inception tt1375666
-*/ 
-//fetchStreamingDataForTitles(["tt0468569", "tt0111161", "tt0167260", "tt1375666" ])
-
-
-//   fetch('https://streaming-availability.p.rapidapi.com/shows/tt0068646', options)
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log(data)
-//         let de = data.streamingOptions.de;
-//         console.log(de[0].type)
-//         console.log(de[2]["type"])
-//         for(let i = 0; i<de.length; i++){
-//             if(de[i].type == "subscription"){
-//                 console.log(de[i].link)
-//                 console.log(de[i].service.name)
-//             }
-//         }
-//         console.log(data.streamingOptions.us);
-//     })
-//     .catch(err => console.error(err));
-
-
-// console.log(data.streamingOptions.de);//returns array
-// let de = data.streamingOptions.de;
-// for(let i = 0; i<de.length; i++){
-//     if(de[i][type] == "subscription"){
-//         console.log(de[i][link])
-//         console.log(de[i][service][name])
-//     }
-// }
-// console.log(data.streamingOptions.us);
-
 
 
 //send api calls results back to contentScript 

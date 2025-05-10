@@ -83,108 +83,6 @@ const streamingResultsToDOM = (data, event) => {
     }
 }
 
-/*
-const streamingResultsToDOMtt = (data) => {
-    console.log("domTT ", data);
-    const {userCountry, titles} = data;
-    console.log(titles);
-    console.log(data);
-    if(titles.notFound === true) console.log("not foundiii")
-    if(data === null) console.log("hello darkness my old friend..")
-
-        const {titleId, titleName, streamingOptions, notFound} = titles
-
-        console.log("id  " + titleId);
-        console.log("name " + titleName);
-
-        //if(streamingOptions.length == 0) lBoxNA(titleId, userCountry)//hier auf default country ändern
-        if(notFound){
-            console.log("nottttt");
-            lBoxNotFoundTT(titleId);
-        }
-        const hasUserCountry = streamingOptions.some(option => option.country === userCountry);
-
-        if(!hasUserCountry) lBoxNATT(titleId, userCountry);
-
-        for(const {country, services} of streamingOptions){
-            //console.log("country," + country);
-
-            for(const {name, link, type} of services){
-                // console.log("  ServiceName:", name);
-                // console.log("  Link:", link);
-                // console.log("  Type:", type);
-                if(userCountry == country) lBoxUserCountryTT(titleId, country, name, link, type)
-                else loadDropdownTT(titleId, country, name, link, type);
-            }
-        }
-}
-
-
-const streamingResultsToDOM = (data) => {
-    console.log("srtodata ", data);
-    const {userCountry, titles} = data;
-    console.log(titles);
-    console.log(data);
-    if(titles.notFound === true) console.log("not foundiii")
-    if(data === null) console.log("hello darkness my old friend..")
-
-
-        const {titleId, titleName, streamingOptions, notFound} = titles
-
-        console.log("id  " + titleId);
-        console.log("name " + titleName);
-
-        //if(streamingOptions.length == 0) lBoxNA(titleId, userCountry)//hier auf default country ändern
-        if(notFound){
-            console.log("nottttt");
-            lBoxNotFound(titleId);
-        }
-        const hasUserCountry = streamingOptions.some(option => option.country === userCountry);
-
-        if(!hasUserCountry) lBoxNA(titleId, userCountry);
-
-        for(const {country, services} of streamingOptions){
-            //console.log("country," + country);
-
-            for(const {name, link, type} of services){
-                // console.log("  ServiceName:", name);
-                // console.log("  Link:", link);
-                // console.log("  Type:", type);
-                if(userCountry == country) lBoxUserCountry(titleId, country, name, link, type)
-                else loadDropdown(titleId, country, name, link, type);
-            }
-        }
-        /*
-    for(const {titleId, titleName, streamingOptions, notFound} of titles){
-        console.log("id  " + titleId);
-        console.log("name " + titleName);
-
-        //if(streamingOptions.length == 0) lBoxNA(titleId, userCountry)//hier auf default country ändern
-        if(notFound){
-            console.log("nottttt");
-            lBoxNotFound(titleId);
-            continue;
-        }
-        const hasUserCountry = streamingOptions.some(option => option.country === userCountry);
-
-        if(!hasUserCountry) lBoxNA(titleId, userCountry);
-
-        for(const {country, services} of streamingOptions){
-            //console.log("country," + country);
-
-            for(const {name, link, type} of services){
-                // console.log("  ServiceName:", name);
-                // console.log("  Link:", link);
-                // console.log("  Type:", type);
-                if(userCountry == country) lBoxUserCountry(titleId, country, name, link, type)
-                else loadDropdown(titleId, country, name, link, type);
-            }
-        }
-    }*/
-/*}
-*/
-
-
 
 const loadDropdown = (titleId, country, name, linkUrl, type) => {
     anchorTagLinks.forEach(link => {
@@ -208,44 +106,9 @@ const loadDropdown = (titleId, country, name, linkUrl, type) => {
             if(ageRatingSpan){
                 let dropdown = siblingDiv.nextElementSibling
                 if(!dropdown.classList.contains("dropdown")){
-
                     dropdown = dropDownStyling("dropdown", siblingDiv, 'afterend', "0.5rem", 0);
-                    /*
-                    dropdown = document.createElement("select");
-                    dropdown.className = "dropdown";
-                    dropdown.style.fontSize = "0.85em";
-                    dropdown.style.borderRadius = "4px";
-                    dropdown.style.padding = "2px 4px";
-                    dropdown.style.marginTop = "0.5rem";
-                    dropdown.style.width = "160px"
-                    dropdown.style.cursor = "pointer";
-
-                    siblingDiv.insertAdjacentElement('afterend', dropdown);
-
-                    dropdown.addEventListener("change", function() {
-                        if (this.value) {
-                            window.open(this.value, "_blank");
-                            this.selectedIndex = 0; 
-                        }
-                    });
-                    
-                    const defaultOption = document.createElement("option");
-                    defaultOption.textContent = "Choose another country ";
-                    defaultOption.disabled = true;
-                    defaultOption.selected = true;
-                    dropdown.appendChild(defaultOption);*/
                 }
-
-
                 const option = createDropdownOption(country, name, linkUrl, type);
-
-                /*const option = document.createElement("option");
-                option.value = linkUrl;
-                if(type === "free"){
-                    option.textContent = `${country.toUpperCase()} ${getFlagEmoji(country)} ${name} - ${type}`;
-                }else{
-                    option.textContent = `${country.toUpperCase()} ${getFlagEmoji(country)} ${name}`;
-                }*/
                 dropdown.appendChild(option);
                 
             }
@@ -270,37 +133,7 @@ const loadDropdownTT = (titleId, country, name, linkUrl, type) => {
                 }else{
                     dropdown = existingDropdown;
                 }
-
-                    /*
-                    dropdown = document.createElement("select");
-                    dropdown.className = "dropdownTT";
-                    dropdown.style.fontSize = "0.85em";
-                    dropdown.style.borderRadius = "4px";
-                    dropdown.style.padding = "2px 4px";
-                    dropdown.style.marginLeft = "0.5rem";
-                    dropdown.style.width = "160px"
-                    dropdown.style.cursor = "pointer";
-                    lastLi.insertAdjacentElement('afterend', dropdown);
-                    dropdown.addEventListener("change", function() {
-                        if (this.value) {
-                            window.open(this.value, "_blank");
-                            this.selectedIndex = 0; 
-                        }
-                    });
-                    const defaultOption = document.createElement("option");
-                    defaultOption.textContent = "Choose another country ";
-                    defaultOption.disabled = true;
-                    defaultOption.selected = true;
-                    dropdown.appendChild(defaultOption);*/
-                //}
                 const option = createDropdownOption(country, name, linkUrl, type);
-                /*const option = document.createElement("option");
-                option.value = linkUrl;
-                if(type === "free"){
-                    option.textContent = `${country.toUpperCase()} ${getFlagEmoji(country)} ${name} - ${type}`;
-                }else{
-                    option.textContent = `${country.toUpperCase()} ${getFlagEmoji(country)} ${name}`;
-                }*/
                 dropdown.appendChild(option);
                 
             }
@@ -340,89 +173,6 @@ const dropDownStyling = ( className, insertTarget, insertMethod, top, left) => {
     return dropdown;
 }
 
-/*
-const loadDropdown = (titleId, country, name, linkUrl, type) => {
-    anchorTagLinks.forEach(link => {
-        if (link.href.includes(`/title/${titleId}`)) {
-            let parentDiv = link.parentNode;
-            let siblingDiv = parentDiv?.nextElementSibling;
-            let ageRatingSpan = siblingDiv?.querySelectorAll('span')?.[siblingDiv.querySelectorAll('span').length - 1];
-            console.log(siblingDiv),
-            console.log(ageRatingSpan);
-            if (siblingDiv && ageRatingSpan) {
-                console.log("194")
-                const dropdown = createDropDown("dropdown", siblingDiv, "afterend", "0.5rem", "0", true);
-                dropdown.appendChild(createDropdownOption(country, name, linkUrl, type));
-                console.log("appendo");
-            }
-        }
-    });
-};
-
-const loadDropdownTT = (titleId, country, name, linkUrl, type) => {
-    let h1 = document.querySelector("h1");
-    let siblingDiv = h1.nextElementSibling;
-    let lastLi = siblingDiv.lastElementChild;
-
-    if(lastLi){
-        const dropdown = createDropDown("dropdownTT", lastLi, "afterend", "0", "0.5rem", flase);
-        dropdown.appendChild(createDropdownOption(country, name, linkUrl, type));
-    }
-};
-
-const createDropDown = (className, insertTarget, insertMethod = "afterend", top, left, isTTPage) => {
-    let dropdown;
-    if(isTTPage){
-        console.log("tt")
-        dropdown = insertTarget.nextElementSibling;
-        if(!dropdown.classList.contains("dropdown")){
-            console.log("-t")
-            dropDownStyling(dropdown,className, insertTarget, insertMethod, top, left);
-        }
-    }else{
-        console.log("xx")
-        dropdown = document.querySelector(`.${className}`);
-        if(!dropdown) {
-            console.log("-x")
-            dropDownStyling(dropdown, className, insertTarget, insertMethod, top, left)
-        }
-    }
-    return dropdown;
-}
-const dropDownStyling = (dropdown, className, insertTarget, insertMethod, top, left) => {
-    dropdown = document.createElement("select");
-    dropdown.className = className;
-    dropdown.style.fontSize = "0.85em";
-    dropdown.style.borderRadius = "4px";
-    dropdown.style.padding = "2px 4px";
-    dropdown.style.marginTop = top;
-    dropdown.style.marginLeft = left;
-    dropdown.style.width = "160px";
-    dropdown.style.cursor = "pointer";
-
-    const defaultOption = document.createElement("option");
-    defaultOption.textContent = "Choose another country ";
-    defaultOption.disabled = true;
-    defaultOption.selected = true;
-    dropdown.appendChild(defaultOption);
-
-    dropdown.addEventListener("change", function () {
-        if (this.value) {
-            window.open(this.value, "_blank");
-            this.selectedIndex = 0;
-        }
-    });
-
-    insertTarget.insertAdjacentElement(insertMethod, dropdown);
-}
-
-const createDropdownOption = (country, name, linkUrl, type) => {
-    const option = document.createElement("option");
-    option.value = linkUrl;
-    option.textContent = `${country.toUpperCase()} ${getFlagEmoji(country)} ${name}` + (type === "free" ? ` - ${type}` : "");
-    return option;
-};
-*/
 
 const lBoxUserCountryTT = (titleId, country, name, linkUrl, type) => {//"16px"
     console.log("lboxUserCountryTT")
@@ -541,48 +291,6 @@ const appendNotFoundStyling = (element) => {
     span.style.fontWeight = "bold";
     element.appendChild(span);
 };
-
-/*
-const lBox = (titleId, country, name, link, type) => {
-    anchorTagLinks.forEach(link => {
-        if(link.href.includes(`/title/${titleId}`)){
-            let h3 = link.querySelector("h3");
-            if(h3){
-                const span = document.createElement("span");
-                span.className = "service";
-                //function auslagern
-                if(type == "free"){
-                    span.textContent = `${name} ${country} ${type}`
-                }else{
-                    span.textContent = `${name} ${country} `
-                }
-                span.style.marginLeft = "8px";
-                span.style.fontSize = "0.8em";
-                //function auslagern
-                if(name == "Netflix"){
-                    span.style.backgroundColor = "red";
-                }else if(name == "Prime Video"){
-                    span.style.backgroundColor = "blue";
-                }else{
-                    span.style.backgroundColor = "rebeccapurple";
-                }
-                span.style.borderRadius = "4px";
-                span.style.padding = "2px 4px";
-                span.style.color = "white";
-                span.style.fontWeight = "bold";
-
-                h3.appendChild(span);
-            }
-        }
-    })
-}
-
-*/
-
-
-
-
-
 
 const grabTitleID = (serviceSelection) => {
     cnt = 0;
