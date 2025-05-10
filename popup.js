@@ -124,9 +124,10 @@ const loadCheckboxes = (serviceSelection) => {
 }
 
 const validURL = (url) => {
-    return (url.includes("imdb.com/chart/top") || url.includes("imdb.com/list/ls") || url.includes("imdb.com/title/tt") ||
-        ( url.includes("imdb.com/user/") && ( url.includes("watchhistory") || url.includes("ratings") || url.includes("watchlist") ) ) ||
-        url.includes("imdb.com/chart/tvmeter/") || url.includes("imdb.com/chart/moviemeter") )
+    return ( (url.includes("imdb.com/") && url.includes("chart/top")) || (url.includes("imdb.com/") && url.includes("/list/ls")) || 
+        (url.includes("imdb.com/") &&  url.includes("/title/tt")) ||
+        ( url.includes("imdb.com/") &&  url.includes("/user/") &&  ( url.includes("watchhistory") || url.includes("ratings") || url.includes("watchlist") ) ) ||
+        ( url.includes("imdb.com/") && url.includes("chart/tvmeter/")) || (url.includes("imdb.com") && url.includes("chart/moviemeter") )  )
 }
 
 function isValidPage(activeTab){
