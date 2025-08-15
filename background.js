@@ -140,7 +140,7 @@ const fetchStreamingDataProvider = async (serviceSelection, titleId) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': "10b8f8f786mshe30857c4324f0f4p1148d8jsn82737f5ed98c",
+            'X-RapidAPI-Key': "yourAPIkey",
             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
         }//10b8f8f786mshe30857c4324f0f4p1148d8jsn82737f5ed98c
     };//c8d3390269mshbc036e9d1af7511p1108fajsn19442eccb00e
